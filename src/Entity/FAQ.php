@@ -23,6 +23,9 @@ class FAQ
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $source = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $slug = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class FAQ
     public function setSource(?string $source): static
     {
         $this->source = $source;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
