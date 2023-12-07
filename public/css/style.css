@@ -277,6 +277,10 @@ button {
     border-radius: 20px;
     border: 2px solid #fff;
     color: #fff;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: #000d10;
+    padding: 7px;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -1013,4 +1017,7 @@ button {
 
 .copyright_text a:hover {
     color: #e27141;
+}
+a:hover{
+    color: #79C524;
 }
