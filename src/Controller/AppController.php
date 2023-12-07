@@ -24,8 +24,8 @@ class AppController extends AbstractController
     public function decouvrir(FAQRepository $faqRepository): Response
     {
         $faq = $faqRepository->findAll();
-        return $this->render('faq/index.html.twig', [
-            'controller_name' => 'FAQController',
+        return $this->render('faq.html.twig', [
+            'controller_name' => 'AppController',
             'faqList' => $faq,
         ]);
     }
