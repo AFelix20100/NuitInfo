@@ -12,7 +12,7 @@ class TetrisController extends AbstractController
     public function index(): Response
     {
         
-        return $this->render('tetris/index.html.twig', [
+        return $this->render('bundles\TwigBundle\Exception\error404.html.twig', [
             'controller_name' => 'TetrisController',
         ]);
     }
