@@ -14,7 +14,6 @@ class FAQController extends AbstractController
     public function index(FAQRepository $faqRepository): Response
     {
         $faq = $faqRepository->findAll();
-        // dd($faq);
         return $this->render('faq/index.html.twig', [
             'controller_name' => 'FAQController',
             'faqList' => $faq,
