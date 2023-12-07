@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Entity\FAQ;
+use App\Repository\FAQRepository;
 
 class AppController extends AbstractController
 {
@@ -19,10 +21,12 @@ class AppController extends AbstractController
     }
 
     #[Route('/decouvrir', name: 'app_decouvrir')]
-    public function decouvrir(): Response
+    public function decouvrir(FAQRepository $faqRepository): Response
     {
-        return $this->render('decouvrir.html.twig', [
-            'controller_name' => 'AppController',
+        $faq = $faqRepository->findAll();
+        return $this->render('faq/index.html.twig', [
+            'controller_name' => 'FAQController',
+            'faqList' => $faq,
         ]);
     }
 
