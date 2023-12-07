@@ -36,7 +36,7 @@ class AuthentificationController extends AbstractController
             $security->login($user);
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('authentification/register.html.twig', [
