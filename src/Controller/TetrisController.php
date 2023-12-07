@@ -11,6 +11,7 @@ class TetrisController extends AbstractController
     #[Route('/tetris', name: 'app_tetris')]
     public function index(): Response
     {
+        
         return $this->render('tetris/index.html.twig', [
             'controller_name' => 'TetrisController',
         ]);
