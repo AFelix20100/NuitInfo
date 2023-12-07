@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VertDemain - FAQ{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="accordion" id="accordionExample">
+
+    {% for faq in faqList %}
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="true" aria-controls="collapse{{ faq.id }}">
+                {{ faq.question }}
+            </button>
+        </h2>
+        <div id="collapse{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>{{ faq.answer }}</strong>
+                <div style="margin: 20px 0px 10px;">
+                    Source: <a href="{{faq.source}}">{{ faq.slug }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

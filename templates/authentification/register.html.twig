@@ -3,17 +3,28 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+<!-- contact section start -->
+   <div class="contact_section layout_padding">
+      <div class="container">
+         <h1 class="contact_taital">S'inscrire</h1>
+         <div class="email_text">
+         {{ form_errors(registrationForm) }}
+         {{ form_start(registrationForm) }}
+            <div class="form-group">
+                {{ form_widget(registrationForm.username) }}
+            </div>
+            <div class="form-group">
+               {{ form_widget(registrationForm.plainPassword) }}
+            </div>
+            {{ form_row(registrationForm.agreeTerms) }}
+            <button type="submit send_btn" class="btn">S'inscrire</button>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{{ path('app_login') }}">Déjà inscrit ? Allez vers la page de connexion</a>
+            </div>
+            {{ form_end(registrationForm) }}
+         </div>
+      </div>
+   </div>
+   <!-- contact section end -->
+    
 {% endblock %}
