@@ -10,7 +10,7 @@ use App\Repository\FAQRepository;
 
 class FAQController extends AbstractController
 {
-    #[Route('/faq', name: 'app_faq')]
+    #[Route('/decouvrir', name: 'app_decouvrir')]
     public function index(FAQRepository $faqRepository): Response
     {
         $faq = $faqRepository->findAll();
