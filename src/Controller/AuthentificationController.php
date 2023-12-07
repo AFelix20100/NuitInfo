@@ -11,11 +11,12 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class AuthentificationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Security $security, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -32,12 +33,13 @@ class AuthentificationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+            $security->login($user);
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('authentification/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
@@ -47,7 +49,7 @@ class AuthentificationController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('login/index.html.twig', 
+        return $this->render('authentification/login.html.twig', 
         [
             'last_username' => $lastUsername,
             'error'         => $error,
