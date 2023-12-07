@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -30,6 +32,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $certificat = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserQuiz::class)]
+    private Collection $quiz;
+
+    public function __construct()
+    {
+        $this->quiz = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -109,6 +119,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCertificat(bool $certificat): static
     {
         $this->certificat = $certificat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserQuiz>
+     */
+    public function getQuiz(): Collection
+    {
+        return $this->quiz;
+    }
+
+    public function addQuiz(UserQuiz $quiz): static
+    {
+        if (!$this->quiz->contains($quiz)) {
+            $this->quiz->add($quiz);
+            $quiz->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuiz(UserQuiz $quiz): static
+    {
+        if ($this->quiz->removeElement($quiz)) {
+            // set the owning side to null (unless already changed)
+            if ($quiz->getUser() === $this) {
+                $quiz->setUser(null);
+            }
+        }
 
         return $this;
     }
