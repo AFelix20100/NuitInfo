@@ -33,16 +33,8 @@ class AppController extends AbstractController
             'controller_name' => 'AppController',
         ]);
     }
-    
-    #[Route('/blog', name: 'blog')]
-    public function blog(): Response
-    {
-        return $this->render('blog.html.twig', [
-            'controller_name' => 'AppController',
-        ]);
-    }
 
-    #[Route('/contact', name: 'contact')]
+    #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
     {
         return $this->render('contact.html.twig', [
