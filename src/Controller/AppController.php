@@ -18,22 +18,22 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/about', name: 'about')]
-    public function about(): Response
+    #[Route('/cours', name: 'cours')]
+    public function cours(): Response
     {
-        return $this->render('about.html.twig', [
+        return $this->render('cours.html.twig', [
             'controller_name' => 'AppController',
         ]);
     }
 
-    #[Route('/services', name: 'services')]
-    public function services(): Response
+    #[Route('/quizz', name: 'quizz')]
+    public function quizz(): Response
     {
-        return $this->render('services.html.twig', [
+        return $this->render('quizz.html.twig', [
             'controller_name' => 'AppController',
         ]);
     }
-
+    
     #[Route('/blog', name: 'blog')]
     public function blog(): Response
     {
@@ -49,4 +49,6 @@ class AppController extends AbstractController
             'controller_name' => 'AppController',
         ]);
     }
+
+    
 }
