@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class AppController extends AbstractController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'app_index')]
     public function index(): Response
     {
         return $this->render('index.html.twig', [
@@ -18,18 +18,18 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/cours', name: 'cours')]
-    public function cours(): Response
+    #[Route('/decouvrir', name: 'app_decouvrir')]
+    public function decouvrir(): Response
     {
-        return $this->render('cours.html.twig', [
+        return $this->render('decouvrir.html.twig', [
             'controller_name' => 'AppController',
         ]);
     }
 
-    #[Route('/quizz', name: 'quizz')]
-    public function quizz(): Response
+    #[Route('/quiz', name: 'app_quiz')]
+    public function quiz(): Response
     {
-        return $this->render('quizz.html.twig', [
+        return $this->render('quiz.html.twig', [
             'controller_name' => 'AppController',
         ]);
     }
