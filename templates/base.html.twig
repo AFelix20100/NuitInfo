@@ -43,7 +43,8 @@
 
     <body>
 
-        {% block body %}
+        {% if app.request.get('_route') == 'app_index' %}
+        {% else %}
         
         <!-- header section start -->
         <div class="header_section">
@@ -92,7 +93,9 @@
         </div>
         <!-- header section end -->
 
-        {% endblock %}
+        {% endif %}
+
+        {% block body %}{% endblock %}
 
         <!-- footer section start -->
         <div class="footer_section layout_padding">
