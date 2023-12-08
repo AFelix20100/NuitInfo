@@ -1014,3 +1014,8 @@ button {
 .copyright_text a:hover {
     color: #e27141;
 }
+
+#tetris {
+    width:75px;
+    opacity: 0.10;
+}
