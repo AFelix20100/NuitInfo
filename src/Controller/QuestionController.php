@@ -22,8 +22,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class QuestionController extends AbstractController
 {
-    #[Route('/quiz', name: 'app_quiz')]
-    public function quiz(QuestionsRepository $questionsRepository, Request $request,EntityManagerInterface $entityManager): Response
+    #[Route('/quiz3', name: 'app_quiz3')]
+    public function quiz(QuestionsRepository $questionsRepository, Request $request): Response
     {
         $questions = $questionsRepository->findAllQuestions();
         $finalQuestions = [];

@@ -37,11 +37,14 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/quiz2', name: 'app_quiz2')]
-    public function quiz(): Response
+    #[Route('/quiz', name: 'app_quiz')]
+    public function quiz(QuestionsRepository $questionsRepository): Response
     {
-        return $this->render('quiz.html.twig', [
-            'controller_name' => 'AppController',
+        $data = $questionsRepository->findAll();
+        $vingtPremiersElements = array_slice($data, 0, 20);
+        return $this->render('quiz.html.twig', 
+        [
+            'vingtPremiersElements' => $vingtPremiersElements,
         ]);
     }
 
@@ -90,7 +93,8 @@ class AppController extends AbstractController
         }
 
         return $this->render('question/test.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form->createView(),]);
+    }
     #[Route('/418', name: 'app_teapot')]
     public function teapot(): Response {
         return $this->render('bundles\TwigBundle\Exception\error418.html.twig', [
