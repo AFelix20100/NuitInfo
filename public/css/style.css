@@ -1018,9 +1018,6 @@ button {
 .copyright_text a:hover {
     color: #e27141;
 }
-a:hover{
-    color: #79C524;
-}
 
 .logout:hover{
     background-color: #ff343499 !important;
