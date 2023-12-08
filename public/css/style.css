@@ -1022,9 +1022,11 @@ a:hover{
     color: #79C524;
 }
 
+
 .logout:hover{
     background-color: #ff343499 !important;
 }
+
 
 #tetris {
     width:75px;
