@@ -25,14 +25,6 @@ class AppController extends AbstractController
             'controller_name' => 'AppController',
         ]);
     }
-
-    #[Route('/quiz', name: 'app_quiz')]
-    public function quiz(): Response
-    {
-        return $this->render('quiz.html.twig', [
-            'controller_name' => 'AppController',
-        ]);
-    }
     
     #[Route('/blog', name: 'blog')]
     public function blog(): Response
