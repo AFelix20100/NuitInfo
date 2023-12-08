@@ -5,6 +5,9 @@
 {% block body %}
 
 <div class="container">
+    <div>
+        <button class="btn btn-primary mb-3" id="toggleAll">Ouvrir Tout / Fermer Tout</button>
+    </div>
     <div class="accordion" id="accordionExample">
 
     {% for faq in faqList %}
@@ -30,4 +33,22 @@
     </div>
 </div>
 
+<script>
+    // JavaScript pour ouvrir/fermer tous les éléments d'accordéon lors du clic sur le bouton
+    document.getElementById('toggleAll').addEventListener('click', function() {
+        var accordions = document.querySelectorAll('.accordion-button');
+        accordions.forEach(function(accordion) {
+            var targetId = accordion.getAttribute('data-bs-target');
+            var target = document.querySelector(targetId);
+            if (target) {
+                var isOpen = target.classList.contains('show');
+                if (isOpen) {
+                    new bootstrap.Collapse(target);
+                } else {
+                    new bootstrap.Collapse(target, { toggle: true });
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}
