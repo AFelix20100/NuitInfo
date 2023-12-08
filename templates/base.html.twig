@@ -86,6 +86,7 @@
                         <li class="active"><a href="{{ path('app_index') }}">Accueil</a></li>
                         <li><a href="{{ path('app_decouvrir') }}">Découvrir</a></li>
                         <li><a href="{{ path('app_quiz') }}">Quiz</a></li>
+<<<<<<< HEAD
 
                         {% if app.user %}
                             <li style="color: lightgreen;">{{ app.user.userIdentifier }}</li>
@@ -101,6 +102,10 @@
                             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                         {% endif %}
 
+=======
+                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                        <li><a href="{{ path('app_tetris') }}"><img id="tetris" src="http://tetris.planetcode.fr/LogoTetrisVector.png" alt="Se rendre sur le tetris"></a></li>
+>>>>>>> 7659b2e (add tetris link)
                     </ul>
                     </div>
                 </div>
