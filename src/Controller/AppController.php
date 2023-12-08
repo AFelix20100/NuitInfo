@@ -32,7 +32,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/quiz', name: 'app_quiz')]
+    #[Route('/quiz2', name: 'app_quiz')]
     public function quiz(): Response
     {
         return $this->render('quiz.html.twig', [
@@ -40,7 +40,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[IsGranted('')]
+    #[IsGranted('ROLE_USER')]
     #[Route('/profil', name: 'app_profil')]
     public function profil(UserRepository $userRepository): Response
     {
