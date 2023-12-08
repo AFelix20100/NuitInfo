@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\QuestionsRepository;
 use App\Entity\Questions;
 use App\Form\QuestionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -22,7 +23,6 @@ class QuestionController extends AbstractController
     public function quiz(QuestionsRepository $questionsRepository, Request $request): Response
     {
         $questions = $questionsRepository->findAllQuestions();
-    
         $finalQuestions = [];
         $range = (count($questions) > 19) ? 20 : count($questions); 
         $uniqueRandomNumbers = [];
@@ -39,15 +39,19 @@ class QuestionController extends AbstractController
         foreach($finalQuestions as $une_question){
             $builder->add("Question".$une_question->getId(), RadioType::class, [
                 'label' => $une_question->getQuestion(),
+                'required' => false,
+            ]);
+            $builder->add("id".$questions['id'], HiddenType::class, [
+                'label' => $une_question->getId(),
             ]);
         }
         $builder->add('save', SubmitType::class, ['label' => 'Submit']);
-        
         $form = $builder->getForm();
         $form->handleRequest($request);
-    
+        dd($form);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($form->getData());
+            dd($form->getData());
+
         }
     
         return $this->render('question/index.html.twig', [
