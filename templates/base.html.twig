@@ -72,11 +72,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_decouvrir') }}">Découvrir</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_quiz') }}">Quiz</a>
-                            </li>
-
+                            
                             {% if app.user %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_quiz') }}">Quiz</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_profil') }}" style="color: lightgreen;">{{ app.user.userIdentifier }}</a>
                                 </li>
@@ -85,6 +85,9 @@
                                 </li>
                             {% endif %}
                             {% if not app.user %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_login') }}">Quiz</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                                 </li>
@@ -100,13 +103,14 @@
                         <ul>
                             <li class="active"><a href="{{ path('app_index') }}">Accueil</a></li>
                             <li><a href="{{ path('app_decouvrir') }}">Découvrir</a></li>
-                            <li><a href="{{ path('app_quiz') }}">Quiz</a></li>
 
                             {% if app.user %}
+                                <li><a href="{{ path('app_quiz') }}">Quiz</a></li>
                                 <li><a class="login" href="{{ path('app_profil') }}" style="color: lightgreen;">{{ app.user.userIdentifier }}</a></li>
                                 <li><a class="logout" href="{{ path('app_logout') }}">Déconnexion</a></li>
                             {% endif %}
                             {% if not app.user %}
+                                <li><a href="{{ path('app_login') }}">Quiz</a></li>
                                 <li><a class="login" href="{{ path('app_login') }}">Connexion</a></li>
                             {% endif %}
                         </ul>
