@@ -6,7 +6,7 @@
         <div class="header_main">
             <div class="mobile_menu">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="logo_mobile"><a href="{{ path('app_index') }}"><img src="images/logo.png"></a></div>
+                <div class="logo_mobile"><a href="{{ path('app_tetris') }}"><img src="images/logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,30 +19,47 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_decouvrir') }}">Découvrir</a>
                         </li>
+                        {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_quiz') }}">Quiz</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_profil') }}" style="color: lightgreen;">{{ app.user.userIdentifier }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
+                        {% endif %}
+                        {% if not app.user %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_quiz') }}">Quiz</a>
-                        </li>
+                                <a class="nav-link" href="{{ path('app_login') }}">Quiz</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                        {% endif %}
+
                     </ul>
                 </div>
                 </nav>
             </div>
             <div class="container-fluid">
-                <div class="logo"><a href="{{ path('app_index') }}"><img src="images/logo.png"></a></div>
+                <div class="logo"><a href="{{ path('app_tetris') }}"><img src="images/logo.png"></a></div>
                 <div class="menu_main">
-                <ul>
-                    <li class="active"><a href="{{ path('app_index') }}">Accueil</a></li>
-                    <li><a href="{{ path('app_decouvrir') }}">Découvrir</a></li>
-                    <li><a href="{{ path('app_quiz') }}">Quiz</a></li>
+                    <ul>
+                        <li class="active"><a href="{{ path('app_index') }}">Accueil</a></li>
+                        <li><a href="{{ path('app_decouvrir') }}">Découvrir</a></li>
+                        {% if app.user %}
+                            <li><a href="{{ path('app_quiz') }}">Quiz</a></li>
+                            <li><a class="login" href="{{ path('app_profil') }}" style="color: lightgreen;">{{ app.user.userIdentifier }}</a></li>
+                            <li><a class="logout" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        {% endif %}
+                        {% if not app.user %}
+                                <li><a href="{{ path('app_login') }}">Quiz</a></li>
+                                <li><a class="login" href="{{ path('app_login') }}">Connexion</a></li>
+                        {% endif %}
 
-                    {% if app.user %}
-                        <li style="color: lightgreen;">{{ app.user.userIdentifier }}</li>
-                        <li><a class="logout" href="{{ path('app_logout') }}">Déconnexion</a></li>
-                    {% endif %}
-                    {% if not app.user %}
-                            <li><a class="login" href="{{ path('app_login') }}">Connexion</a></li>
-                    {% endif %}
-
-                </ul>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -55,7 +72,9 @@
                         <h1 class="banner_taital"><span style="color:#79C524;">Vert</span>Demain</h1>
                         <p class="banner_text">Notre plateforme est dédiée à la promotion d'un mode de vie durable et respectueux de l'environnement. 
                         Notre mission est de sensibiliser, informer et inspirer chacun à adopter des pratiques écologiques pour préserver notre planète.</p>
+                        {% if not app.user %}
                         <div class="read_bt"><a href="{{path("app_login")}}">Se connecter</a></div>
+                        {% endif %}
                     </div>
                 </div>
                 </div>
@@ -120,7 +139,12 @@
             Ensemble, faisons la différence !</br>
             </br>
             L'équipe de <span style="color:#043D27; font-weight:700;">VertDemain</span>.</p>
-            <div class="send_btn"><a href="{{path("app_quiz")}}" style="width:330px">Tester ses connaissances</a></div>
+            {% if app.user %}
+                <div class="send_btn"><a class="home_quiz" href="{{path("app_quiz")}}">Tester ses connaissances</a></div>
+            {% endif %}
+            {% if not app.user %}
+                <div class="send_btn"><a class="home_quiz" href="{{path("app_login")}}">Tester ses connaissances</a></div>
+            {% endif %}
         </div>
     </div>
     <!-- services section end -->
