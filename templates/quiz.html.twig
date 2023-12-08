@@ -6,9 +6,10 @@
 <div class="contact_section layout_padding">
     <h1 class="contact_taital mb-5">QUIZ</h1>
     <div class="client_section_2 container">
+    {% for element in vingtPremiersElements %}
         <div class="question">
             <div class="titleQuestion">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ?</h2>
+                <h2>{{element.question}}</h2>
             </div>
             <div class="réponse">
                 <form class="d-flex justify-content-center mt-2 gap-5">
@@ -21,6 +22,8 @@
                 </form>
            </div>
         </div>
+    {% endfor %}
+        
     </div>
     <div class="d-flex justify-content-center mt-3">
         <button type="submit send_btn" class="btn">Valider mes réponses</button>

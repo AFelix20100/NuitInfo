@@ -2,7 +2,13 @@
 
 {% block title %}Hello QuestionController!{% endblock %}
 
+
+
 {% block body %}
+{% if score %}
+<h1>Ton score {{score}} </h1>
+{% endif %}
     {{ form_start(form) }}
     {{ form_end(form) }}
 {% endblock %}
+
