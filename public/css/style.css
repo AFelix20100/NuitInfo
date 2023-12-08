@@ -1031,3 +1031,16 @@ button {
 a:hover{
     color: #79C524;
 }
+
+.container:has(img#teapot-img) {
+    display:flex;
+    align-items: center;
+}
+#teapot-img {
+    width:25px;
+    opacity: 0.05;
+}
+
+#teapot-img:hover {
+    opacity:0.1;
+}
