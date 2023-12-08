@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 
 class QuestionController extends AbstractController
 {
-    #[Route('/quiz', name: 'app_quiz')]
+    #[Route('/quiz3', name: 'app_quiz3')]
     public function quiz(QuestionsRepository $questionsRepository, Request $request): Response
     {
         $questions = $questionsRepository->findAllQuestions();
