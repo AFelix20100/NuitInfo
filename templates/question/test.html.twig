@@ -1,0 +1,13 @@
+{# templates/quiz/quiz.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+{{dump(form)}}
+    {# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Soumettre</button>
+    {{ form_end(form) }} #}
+{% endblock %}
