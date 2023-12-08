@@ -3,27 +3,26 @@
 {% block title %}VertDemain - Profil{% endblock %}
 
 {% block body %}
-
-<h1> Bienvenue sur votre profil, {{ user_data.username }} </h1>
-
-<br>
-
-Nombre de quiz réalisé:
-
+<div class="contact_section layout_padding">
+    <h1 class="contact_taital mb-5">Bienvenue sur votre profil, {{ user_data.username }}</h1>
 <div class="client_section_2 container">
-        <div class="question">
-            <div class="titleQuestion">
-                <h2>
-                    {% if user_data.certificat == false %}
-                        Vous ne possédez pas de certificat pour le moment... mais vous pouvez toujours en obtenir un en passant notre <a href="{{ path('app_quiz') }}">quiz</a> !
+    <div class="question">
+        <div class="titleQuestion">
 
-                    {% elseif user_data.certificat == true %}
-                        Vous possédez un certificat. Félicitation !
+            <!-- Nombre de quiz réalisé: -->
 
-                    {% endif %}
-                </h2>
-            </div>
+            <h2>
+                {% if user_data.certificat == false %}
+                    Vous ne possédez pas de certificat pour le moment... mais vous pouvez toujours en obtenir un en passant notre <a href="{{ path('app_quiz') }}">quiz</a> !
+
+                {% elseif user_data.certificat == true %}
+                    Vous possédez un certificat. Félicitation !
+
+                {% endif %}
+            </h2>
         </div>
     </div>
+</div>
+</div>
 
 {% endblock %}
