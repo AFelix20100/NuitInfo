@@ -1030,3 +1030,18 @@ a:hover{
     color: #fff;
     background: #79C524;
     }
+
+.container:has(img#teapot-img) {
+    display: flex;
+    align-items: center;
+}
+
+#teapot-img {
+    width: 25px;
+    opacity: 0.05;
+}
+
+
+#teaport-img:hover {
+    opacity:0.5;
+}
