@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}VertDemain{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}" />
         <!-- librairies bootsrtap -->
@@ -76,9 +75,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_quiz') }}">Quiz</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="{{ path('app_contact') }}">Contact</a>
-                            </li>
                         </ul>
                     </div>
                     </nav>
@@ -90,7 +86,6 @@
                         <li class="active"><a href="{{ path('app_index') }}">Accueil</a></li>
                         <li><a href="{{ path('app_decouvrir') }}">Découvrir</a></li>
                         <li><a href="{{ path('app_quiz') }}">Quiz</a></li>
-                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
 
                         {% if app.user %}
                             <li style="color: lightgreen;">{{ app.user.userIdentifier }}</li>
@@ -121,10 +116,9 @@
                 </div>
                 <div class="social_icon">
                     <ul>
-                    <li><a href="#"><img src="{{ asset('images/fb-icon.png') }}"></a></li>
-                    <li><a href="#"><img src="{{ asset('images/twitter-icon.png') }}"></a></li>
-                    <li><a href="#"><img src="{{ asset('images/linkedin-icon.png') }}"></a></li>
-                    <li><a href="#"><img src="{{ asset('images/instagram-icon.png') }}"></a></li>
+                    <li><a href="https://fr-fr.facebook.com/campus28/"><img src="{{ asset('images/fb-icon.png') }}"></a></li>
+                    <li><a href="https://twitter.com/cci28"><img src="{{ asset('images/twitter-icon.png') }}"></a></li>
+                    <li><a href="https://www.linkedin.com/company/cci-eure-et-loir/"><img src="{{ asset('images/linkedin-icon.png') }}"></a></li>
                     </ul>
                 </div>
             </div>
@@ -134,7 +128,7 @@
         <div class="copyright_section">
             <div class="container">
                 <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html
-                    Templates</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
+                    Templates</a> Distributed by <a href="https://themewagon.com">ThemeWagon.</a> Made by DebugDynasty</p>
             </div>
         </div>
         <!-- copyright section end -->
