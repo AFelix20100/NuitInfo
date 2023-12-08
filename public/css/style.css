@@ -989,7 +989,7 @@ button {
 }
 
 .call_text a:hover {
-    color: #e27141;
+    color: #043D27;
 }
 
 
@@ -998,7 +998,7 @@ button {
 .copyright_section {
     width: 100%;
     float: left;
-    background-color: #122c2d;
+    background-color: #043D27;
     height: auto;
 }
 
