@@ -233,6 +233,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if(row.every(index => squares[index].classList.contains('taken'))) {
           score +=10
           scoreDisplay.innerHTML = score
+          
+          if (score > 404) {
+            
+          }
+
           row.forEach(index => {
             squares[index].classList.remove('taken')
             squares[index].classList.remove('tetromino')

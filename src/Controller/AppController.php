@@ -37,11 +37,14 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/quiz2', name: 'app_quiz2')]
-    public function quiz(): Response
+    #[Route('/quiz', name: 'app_quiz')]
+    public function quiz(QuestionsRepository $questionsRepository): Response
     {
-        return $this->render('quiz.html.twig', [
-            'controller_name' => 'AppController',
+        $data = $questionsRepository->findAll();
+        $vingtPremiersElements = array_slice($data, 0, 20);
+        return $this->render('quiz.html.twig', 
+        [
+            'vingtPremiersElements' => $vingtPremiersElements,
         ]);
     }
 
@@ -56,6 +59,42 @@ class AppController extends AbstractController
         ]);
     }
 
+    // #[Route('/quiz-felix', name: 'app_quiz-felix')]
+    // public function quizFelix(EntityManagerInterface $entityManager, Request $request): Response
+    // {
+    //     $connection = $entityManager->getConnection();
+    //     $sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 10;";
+    //     $result = $connection->fetchAllAssociative($sql);
+
+    //     $form = $this->createForm(QuizFormType::class, ['questions' => $result]);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         // Faites quelque chose avec le quiz (par exemple, enregistrez-le en base de données)
+
+    //         // Redirigez ou affichez un message de succès
+    //     }
+
+    //     return $this->render('question/test.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
+    #[Route('/quiz-felix', name: 'app_quiz-felix')]
+
+    public function quizFelix(Request $request): Response
+    {
+        $form = $this->createForm(QuizFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Traitement des réponses du quiz, par exemple, enregistrement en base de données
+            // $data = $form->getData();
+            // Faites quelque chose avec les réponses
+        }
+
+        return $this->render('question/test.html.twig', [
+            'form' => $form->createView(),]);
+    }
     #[Route('/418', name: 'app_teapot')]
     public function show(): Response {
         return $this->render('bundles\TwigBundle\Exception\error418.html.twig', [
