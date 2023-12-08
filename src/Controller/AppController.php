@@ -40,7 +40,6 @@ class AppController extends AbstractController
         ]);
     }
 
-
     #[IsGranted('')]
     #[Route('/profil', name: 'app_profil')]
     public function profil(UserRepository $userRepository): Response
