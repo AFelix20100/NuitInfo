@@ -4,11 +4,12 @@
 {% block body %}
     <script src="{{asset('js/tetris.js')}}" charset="UTF-8"></script>
 <link rel="stylesheet" href="{{asset('css/tetris.css')}}"></link>
-    <h1>Page not found</h1>
     <h2>Tetris found !</h2>
 
     <h3>Score:<span id="score">0</span></h3>
-    <button id="start-button">Start/Pause</button>
+    <div>
+        <button id="start-button">Start/Pause</button>
+    </div>
 
     <div class="container">
       <div class="grid">
