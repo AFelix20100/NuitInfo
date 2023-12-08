@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VertDemain - Profil{% endblock %}
+
+{% block body %}
+
+{{ user_data.username }}
+
+<br>
+
+{% if user_data.certificat == false %}
+Vous ne possédez pas de certificat pour le moment... mais vous pouvez toujours en obtenir un en passant notre <a href="{{ path('app_quiz') }}">quiz</a> !
+
+{% elseif user_data.certificat == true %}
+Vous possédez un certificat. Félicitation !
+
+{% endif %}
+
+<br>
+
+Nombre de quiz réalisé:
+
+{% endblock %}
