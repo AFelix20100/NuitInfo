@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let nextRandom = 0
     let timerId
     let score = 0
-    const colors = [
-      'orange',
-      'red',
-      'purple',
-      'green',
-      'blue'
+    const images = [
+      'url(../images/solar-screen.png)',
+      'url(../images/lightning-bolt.png)',
+      'url(../images/bicycle.png)',
+      'url(../images/plane-facing-right.png)',
+      'url(../images/wind-turbine_5158543.png)',
     ]
   
     //The Tetrominoes
@@ -66,7 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function draw() {
       current.forEach(index => {
         squares[currentPosition + index].classList.add('tetromino')
-        squares[currentPosition + index].style.backgroundColor = colors[random]
+        squares[currentPosition + index].style.backgroundImage = images[random]
+        squares[currentPosition + index].style.backgroundSize = "contain"
+        squares[currentPosition + index].style.backgroundRepeat = "no-repeat"
       })
     }
   
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function undraw() {
       current.forEach(index => {
         squares[currentPosition + index].classList.remove('tetromino')
-        squares[currentPosition + index].style.backgroundColor = ''
+        squares[currentPosition + index].style.backgroundImage = ''
   
       })
     }
@@ -200,11 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
       //remove any trace of a tetromino form the entire grid
       displaySquares.forEach(square => {
         square.classList.remove('tetromino')
-        square.style.backgroundColor = ''
+        square.style.backgroundImage = ''
       })
       upNextTetrominoes[nextRandom].forEach( index => {
         displaySquares[displayIndex + index].classList.add('tetromino')
-        displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
+        displaySquares[displayIndex + index].style.backgroundImage = images[nextRandom]
+        displaySquares[displayIndex + index].style.backgroundSize = "contain"
+        displaySquares[displayIndex + index].style.backgroundRepeat = "no-repeat"
       })
     }
   
@@ -232,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
           row.forEach(index => {
             squares[index].classList.remove('taken')
             squares[index].classList.remove('tetromino')
-            squares[index].style.backgroundColor = ''
+            squares[index].style.backgroundImage = ''
           })
           const squaresRemoved = squares.splice(i, width)
           squares = squaresRemoved.concat(squares)

@@ -8,7 +8,7 @@
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    background-color: yellow;
+    background-color: lightgrey;
   }
   
   .grid div {
@@ -17,7 +17,7 @@
   }
   
   .tetromino {
-    background-color: blue;
+    background-image: url('../images/bus.png');
   }
   
   
@@ -27,7 +27,7 @@
     height: 80px;
     display: flex;
     flex-wrap: wrap;
-    background-color: yellow;
+    background-color: lightgrey;
   }
   
   .mini-grid div {
