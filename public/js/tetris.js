@@ -225,6 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   
+    //game over
+    function gameOver() {
+      if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+        scoreDisplay.innerHTML = 'end'
+        clearInterval(timerId)
+      }
+    }
+
     //add score
     function addScore() {
       for (let i = 0; i < 199; i +=width) {
@@ -234,8 +242,15 @@ document.addEventListener('DOMContentLoaded', () => {
           score +=10
           scoreDisplay.innerHTML = score
           
-          if (score > 404) {
-            
+          if (score >= 0) {
+
+            const para = document.createElement("p");
+            const node = document.createTextNode("Félicitation, vous venez de perdre votre temps !");
+            para.appendChild(node);
+
+            const parent = document.getElementById("question");
+            const child = document.getElementById("p1");
+            parent.replaceChild(para, child);
           }
 
           row.forEach(index => {
@@ -249,13 +264,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-  
-    //game over
-    function gameOver() {
-      if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
-        scoreDisplay.innerHTML = 'end'
-        clearInterval(timerId)
-      }
-    }
-  
   })
