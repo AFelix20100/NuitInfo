@@ -12,8 +12,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\FAQ;
 use App\Repository\FAQRepository;
 use App\Entity\User;
+use App\Entity\UserQuiz;
 use App\Repository\QuestionsRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,16 +39,16 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/quiz', name: 'app_quiz')]
-    public function quiz(QuestionsRepository $questionsRepository): Response
-    {
-        $data = $questionsRepository->findAll();
-        $vingtPremiersElements = array_slice($data, 0, 20);
-        return $this->render('quiz.html.twig', 
-        [
-            'vingtPremiersElements' => $vingtPremiersElements,
-        ]);
-    }
+    // #[Route('/quiz', name: 'app_quiz')]
+    // public function quiz(QuestionsRepository $questionsRepository): Response
+    // {
+    //     $data = $questionsRepository->findAll();
+    //     $vingtPremiersElements = array_slice($data, 0, 20);
+    //     return $this->render('quiz.html.twig', 
+    //     [
+    //         'vingtPremiersElements' => $vingtPremiersElements,
+    //     ]);
+    // }
 
     #[IsGranted('ROLE_USER')]
     #[Route('/profil', name: 'app_profil')]
@@ -56,46 +58,77 @@ class AppController extends AbstractController
         return $this->render('profil.html.twig', [
             'controller_name' => 'AppController',
             'user_data' => $user,
+            'quiz' => $user->getQuiz(),
         ]);
     }
 
-    // #[Route('/quiz-felix', name: 'app_quiz-felix')]
-    // public function quizFelix(EntityManagerInterface $entityManager, Request $request): Response
-    // {
-    //     $connection = $entityManager->getConnection();
-    //     $sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 10;";
-    //     $result = $connection->fetchAllAssociative($sql);
+    #[Route('/quiz', name: 'app_quiz')]
+    public function quizFelix(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $connection = $entityManager->getConnection();
+        $sql = "SELECT * FROM questions ORDER BY RAND() LIMIT 10;";
+        $questions = $connection->fetchAllAssociative($sql);
 
-    //     $form = $this->createForm(QuizFormType::class, ['questions' => $result]);
+        $form = $this->createForm(QuizFormType::class, ['questions' => $questions]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            // Example to get only user answers from $form->getData()
+            $formData = $form->getData();
+            $userAnswers = [];
+
+            foreach ($formData as $key => $value) {
+                // Check if the key starts with "question_"
+                if (strpos($key, 'question_') === 0) {
+                    $userAnswers[$key] = $value;
+                }
+            }
+
+            $score = $this->scoreCalculation($userAnswers, $formData["questions"]);
+
+            $userQuiz = new UserQuiz();
+            $userQuiz->setUser($this->getUser());   
+            $userQuiz->setDate(new DateTime("now"));
+            $userQuiz->setResult($score[0]);
+
+            $entityManager->persist($userQuiz);
+            $entityManager->flush();
+
+            if($score[0] >= 8)
+            {
+                $user = $this->getUser();
+                $user->setCertificat(1);
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->redirectToRoute('app_certificat');
+            }
+
+            //Render the results
+            return $this->redirectToRoute('app_profil');
+        }
+
+        return $this->render('quiz.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    // #[Route('/quiz-felix', name: 'app_quiz-felix')]
+
+    // public function quizFelix(Request $request): Response
+    // {
+    //     $form = $this->createForm(QuizFormType::class);
     //     $form->handleRequest($request);
 
     //     if ($form->isSubmitted() && $form->isValid()) {
-    //         // Faites quelque chose avec le quiz (par exemple, enregistrez-le en base de données)
-
-    //         // Redirigez ou affichez un message de succès
+    //         // Traitement des réponses du quiz, par exemple, enregistrement en base de données
+    //         // $data = $form->getData();
+    //         // Faites quelque chose avec les réponses
     //     }
 
     //     return $this->render('question/test.html.twig', [
     //         'form' => $form->createView(),
     //     ]);
     // }
-    #[Route('/quiz-felix', name: 'app_quiz-felix')]
-
-    public function quizFelix(Request $request): Response
-    {
-        $form = $this->createForm(QuizFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Traitement des réponses du quiz, par exemple, enregistrement en base de données
-            // $data = $form->getData();
-            // Faites quelque chose avec les réponses
-        }
-
-        return $this->render('question/test.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
     
 
     #[Route('/418', name: 'app_teapot')]
@@ -103,5 +136,27 @@ class AppController extends AbstractController
         return $this->render('bundles\TwigBundle\Exception\error418.html.twig', [
             'controller_name' => 'AppController',
         ]);
+    }
+
+    private function scoreCalculation($userAnswers, $answers)
+    {
+        $numberGoodAnswers = 0;
+        $numberBadAnswers = 0;
+        $counter = 0;
+        
+        foreach($userAnswers as $oneAnswer)
+        {
+            if($oneAnswer == $answers[$counter]["answer"])
+            {
+                $numberGoodAnswers++;
+            }
+            else
+            {
+                $numberBadAnswers++;
+            }
+            $counter++;
+        }
+
+        return [$numberGoodAnswers,$numberBadAnswers];
     }
 }

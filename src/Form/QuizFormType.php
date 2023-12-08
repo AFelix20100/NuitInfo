@@ -12,25 +12,29 @@ class QuizFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('questions', CollectionType::class, [
-                'entry_type' => ChoiceType::class,
-                'entry_options' => [
-                    'choices' => ['Vrai' => true, 'Faux' => false],
-                    'expanded' => true,
-                    'multiple' => false,
+        $questions = $options["data"]['questions'];
+        foreach ($questions as $key => $question) {
+            $builder->add('question_' . $key, ChoiceType::class, [
+                'label' => $question["question"],
+                'choices' => [
+                    'Vrai' => 1,
+                    'Faux' => 0,
                 ],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'label' => false, // Pour éviter l'affichage du label de la collection
+                'choice_attr' => function($choice, $key, $value) {
+                    // Add a custom class to each choice
+                    return ['class' => 'mx-2'];
+                },
+                'expanded' => true,
+                'multiple' => false,
             ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null, // Permet de ne pas lier le formulaire à une entité
+            'questions' => [],
+            'csrf_protection' => false,
         ]);
     }
 }
