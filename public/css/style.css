@@ -232,6 +232,7 @@ button {
     width: 100%;
     float: left;
     background-image: url(../images/banner-bg.png);
+    background-repeat: no-repeat;
     height: auto;
     background-size: 100%;
     padding: 0px 0px 20px 0px;
@@ -276,6 +277,10 @@ button {
     border-radius: 20px;
     border: 2px solid #fff;
     color: #fff;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: #000d10;
+    padding: 7px;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -883,7 +888,7 @@ button {
     background-color: #000d10;
     padding: 7px;
 }
-.send_btn a:hover {
+.send_btn a:hover, button#toggleAll:hover {
     color: #ffffff;
     background-color: #043D27;
 }
@@ -1012,4 +1017,7 @@ button {
 
 .copyright_text a:hover {
     color: #e27141;
+}
+a:hover{
+    color: #79C524;
 }

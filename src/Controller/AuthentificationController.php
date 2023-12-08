@@ -45,7 +45,7 @@ class AuthentificationController extends AbstractController
     }
     
     #[Route('/login', name: 'app_login')]
-    public function index(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -54,6 +54,13 @@ class AuthentificationController extends AbstractController
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
+    }
+
+    #[Route('/logout', name: 'app_logout')]
+    public function logout(Security $security): Response
+    {
+        $security->logout();
+        return $this->render('templates/index.html.twig');
     }
 
 }
