@@ -18,6 +18,7 @@ use App\Entity\User;
 use App\Entity\UserQuiz;
 use Doctrine\ORM\EntityManagerInterface;
 use DateTime;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class QuestionController extends AbstractController
 {
@@ -39,7 +40,7 @@ class QuestionController extends AbstractController
         }
         $builder = $this->createFormBuilder(null,['allow_extra_fields' => true]);
         foreach($finalQuestions as $une_question){
-            $builder->add($une_question->getId(), RadioType::class, [
+            $builder->add($une_question->getId(), CheckboxType::class, [
                 'label' => $une_question->getQuestion(),
                 'required' => false,
             ]);
@@ -48,6 +49,7 @@ class QuestionController extends AbstractController
         $form = $builder->getForm();
         $form->handleRequest($request);
         $score = 0;
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             #dd($data);
@@ -78,6 +80,7 @@ class QuestionController extends AbstractController
     
         return $this->render('question/index.html.twig', [
             'form' => $form->createView(),
+            'score' => $score
         ]);
     }
     
