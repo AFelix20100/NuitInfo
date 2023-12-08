@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VertDemain - FAQ{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div>
+        <button class="btn btn-primary mb-3" id="toggleAll">Ouvrir Tout / Fermer Tout</button>
+    </div>
+    <div class="accordion" id="accordionExample">
+
+    {% for faq in faqList %}
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="true" aria-controls="collapse{{ faq.id }}">
+                {{ faq.question }}
+            </button>
+        </h2>
+        <div id="collapse{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>{{ faq.answer }}</strong>
+                <div style="margin: 20px 0px 10px;">
+                    Source: <a href="{{faq.source}}">{{ faq.slug }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    </div>
+</div>
+
+<script>
+    // JavaScript pour ouvrir/fermer tous les éléments d'accordéon lors du clic sur le bouton
+    document.getElementById('toggleAll').addEventListener('click', function() {
+        var accordions = document.querySelectorAll('.accordion-button');
+        accordions.forEach(function(accordion) {
+            var targetId = accordion.getAttribute('data-bs-target');
+            var target = document.querySelector(targetId);
+            if (target) {
+                var isOpen = target.classList.contains('show');
+                if (isOpen) {
+                    new bootstrap.Collapse(target);
+                } else {
+                    new bootstrap.Collapse(target, { toggle: true });
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
