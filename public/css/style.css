@@ -1025,3 +1025,8 @@ a:hover{
 .logout:hover{
     background-color: #ff343499 !important;
 }
+
+#tetris {
+    width:75px;
+    opacity: 0.10;
+}
