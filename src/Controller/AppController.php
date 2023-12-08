@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\FAQ;
 use App\Repository\FAQRepository;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 class AppController extends AbstractController
 {
@@ -46,5 +48,14 @@ class AppController extends AbstractController
         ]);
     }
 
-    
+    #[IsGranted('')]
+    #[Route('/profil', name: 'app_profil')]
+    public function profil(UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        return $this->render('profil.html.twig', [
+            'controller_name' => 'AppController',
+            'user_data' => $user,
+        ]);
+    }
 }
