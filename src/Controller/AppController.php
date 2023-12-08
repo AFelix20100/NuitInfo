@@ -50,4 +50,11 @@ class AppController extends AbstractController
             'user_data' => $user,
         ]);
     }
+
+    #[Route('/418', name: 'app_teapot')]
+    public function teapot(): Response {
+        return $this->render('bundles\TwigBundle\Exception\error418.html.twig', [
+            'controller_name' => 'AppController',
+        ]);
+    }
 }
