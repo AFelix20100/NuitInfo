@@ -1030,3 +1030,7 @@ a:hover{
     width:75px;
     opacity: 0.10;
 }
+
+a:hover{
+    color: #79C524;
+}
