@@ -888,7 +888,7 @@ button {
     background-color: #000d10;
     padding: 7px;
 }
-.send_btn a:hover {
+.send_btn a:hover, button#toggleAll:hover {
     color: #ffffff;
     background-color: #043D27;
 }
