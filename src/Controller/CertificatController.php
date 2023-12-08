@@ -13,7 +13,7 @@ class CertificatController extends AbstractController
     {
         $img = imagecreatefrompng($this->getParameter('kernel.project_dir') . "/public/images/certificat.png");
         // (B) TEXT & FONT SETTINGS
-        $txtUserName = "John Doe";
+        $txtUserName = $this->getUser()->getUsername();
         $date = date('d-m-Y');
         $fontFile = $this->getParameter('kernel.project_dir') . "/public/fonts/cream_cake.otf"; // CHANGE TO YOUR OWN!
         $fontFile2 = $this->getParameter('kernel.project_dir') . "/public/fonts/LEMONMILK-Bold.otf"; // CHANGE TO YOUR OWN!
