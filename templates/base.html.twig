@@ -95,6 +95,12 @@
                             <li><a class="login" href="{{ path('app_login') }}">Connexion</a></li>
                         {% endif %}
                         <li><a href="{{ path('app_tetris') }}"><img id="tetris" src="http://tetris.planetcode.fr/LogoTetrisVector.png" alt="Se rendre sur le tetris"></a></li>
+                        
+                        {% if app.user %}
+                            <li style="color: lightgreen;">{{ app.user.userIdentifier }}</li>
+                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        {% endif %}
+
                     </ul>
                     </div>
                 </div>
