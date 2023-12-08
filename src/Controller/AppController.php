@@ -5,12 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\QuizFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\FAQ;
 use App\Repository\FAQRepository;
 use App\Entity\User;
+use App\Repository\QuestionsRepository;
 use App\Repository\UserRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 class AppController extends AbstractController
 {
@@ -32,7 +37,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/quiz', name: 'app_quiz')]
+    #[Route('/quiz2', name: 'app_quiz2')]
     public function quiz(): Response
     {
         return $this->render('quiz.html.twig', [
@@ -40,7 +45,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[IsGranted('')]
+    #[IsGranted('ROLE_USER')]
     #[Route('/profil', name: 'app_profil')]
     public function profil(UserRepository $userRepository): Response
     {
