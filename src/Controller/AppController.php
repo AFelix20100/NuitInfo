@@ -32,7 +32,7 @@ class AppController extends AbstractController
         ]);
     }
 
-    #[Route('/quiz2', name: 'app_quiz')]
+    #[Route('/quiz2', name: 'app_quiz2')]
     public function quiz(): Response
     {
         return $this->render('quiz.html.twig', [

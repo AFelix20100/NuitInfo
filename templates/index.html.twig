@@ -6,7 +6,7 @@
         <div class="header_main">
             <div class="mobile_menu">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="logo_mobile"><a href="{{ path('app_index') }}"><img src="images/logo.png"></a></div>
+                <div class="logo_mobile"><a href="{{ path('app_tetris') }}"><img src="images/logo.png"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                 </nav>
             </div>
             <div class="container-fluid">
-                <div class="logo"><a href="{{ path('app_index') }}"><img src="images/logo.png"></a></div>
+                <div class="logo"><a href="{{ path('app_tetris') }}"><img src="images/logo.png"></a></div>
                 <div class="menu_main">
                 <ul>
                     <li class="active"><a href="{{ path('app_index') }}">Accueil</a></li>
@@ -55,7 +55,9 @@
                         <h1 class="banner_taital"><span style="color:#79C524;">Vert</span>Demain</h1>
                         <p class="banner_text">Notre plateforme est dédiée à la promotion d'un mode de vie durable et respectueux de l'environnement. 
                         Notre mission est de sensibiliser, informer et inspirer chacun à adopter des pratiques écologiques pour préserver notre planète.</p>
+                        {% if not app.user %}
                         <div class="read_bt"><a href="{{path("app_login")}}">Se connecter</a></div>
+                        {% endif %}
                     </div>
                 </div>
                 </div>
