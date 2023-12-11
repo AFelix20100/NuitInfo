@@ -35,8 +35,12 @@
 
     {% endfor %}
 </div></div>
+{% if app.user %}
     <div class="send_btn d-flex justify-content-center mt-4" style="width: initial !important"><a class="home_quiz" href="{{path("app_quiz")}}" style="background-color: #043D27;">Tester ses connaissances</a></div>
-
+{% endif %}
+{% if not app.user %}
+    <div class="send_btn d-flex justify-content-center mt-4" style="width: initial !important"><a class="home_quiz" href="{{path("app_login")}}" style="background-color: #043D27;">Tester ses connaissances</a></div>
+{% endif %}
     </div>
 </div>
 
