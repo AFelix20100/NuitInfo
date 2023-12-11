@@ -245,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (score >= 404) {
 
             document.getElementById("p1").style.display = "block";
+            
           }
 
           row.forEach(index => {
