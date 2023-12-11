@@ -242,15 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
           score +=10
           scoreDisplay.innerHTML = score
           
-          if (score >= 0) {
+          if (score >= 404) {
 
-            const para = document.createElement("p");
-            const node = document.createTextNode("Félicitation, vous venez de perdre votre temps !");
-            para.appendChild(node);
-
-            const parent = document.getElementById("question");
-            const child = document.getElementById("p1");
-            parent.replaceChild(para, child);
+            document.getElementById("p1").style.display = "block";
+            
           }
 
           row.forEach(index => {
