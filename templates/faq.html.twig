@@ -8,7 +8,9 @@
     <div class="contact_section layout_padding">
     <h1 class="contact_taital mb-5">Découvrir</h1>
     <div class="client_section_2 container">
-    <div>
+    <p><span style="color:#79C524;">L'apprentissage de nos cours</span>, issus de sources vérifiées, revêt une importance cruciale dans notre quête de connaissance, particulièrement en ce qui concerne l'<span style="color:#79C524;">écologie</span>. Ces enseignements ne se limitent pas à de simples informations à ingérer, mais ils constituent des passerelles vers la compréhension approfondie des enjeux qui façonnent notre planète et de notre rôle en tant qu'individus responsables.</p>
+    <p>Chaque leçon devient une opportunité d'approfondir notre compréhension des défis auxquels notre environnement est confronté, qu'il s'agisse du changement climatique, de la perte de biodiversité, de la pollution ou de la gestion durable des ressources naturelles. <span style="color:#79C524;">Ces connaissances</span> ne sont pas seulement des données à mémoriser, mais des clés pour agir de manière éthique et durable dans notre vie quotidienne.</p>
+    <div class="d-flex justify-content-end">
         <button class="btn btn-primary mb-3" id="toggleAll">Ouvrir Tout / Fermer Tout</button>
     </div>
     <div class="accordion" id="accordionExample">
@@ -17,7 +19,7 @@
 
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="true" aria-controls="collapse{{ faq.id }}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="true" aria-controls="collapse{{ faq.id }}">
                 {{ faq.question }}
             </button>
         </h2>
@@ -33,6 +35,8 @@
 
     {% endfor %}
 </div></div>
+    <div class="send_btn d-flex justify-content-center mt-4" style="width: initial !important"><a class="home_quiz" href="{{path("app_quiz")}}" style="background-color: #043D27;">Tester ses connaissances</a></div>
+
     </div>
 </div>
 
@@ -47,8 +51,11 @@
                 var isOpen = target.classList.contains('show');
                 if (isOpen) {
                     new bootstrap.Collapse(target);
+                    accordion.classList.add('collapsed'); // Remove the 'collapsed' class from the button
+                    target.classList.add('thomas');
                 } else {
                     new bootstrap.Collapse(target, { toggle: true });
+                    accordion.classList.remove('collapsed'); // Remove the 'collapsed' class from the button
                 }
             }
         });
