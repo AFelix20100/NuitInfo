@@ -95,7 +95,7 @@ class AppController extends AbstractController
             $entityManager->persist($userQuiz);
             $entityManager->flush();
 
-            if($score[0] >= 8)
+            if($score[0] >= 5)
             {
                 $user = $this->getUser();
                 $user->setCertificat(1);
