@@ -9,6 +9,10 @@
     <div class="question">
         <div class="titleQuestion">
 
+        {% for item in app.user.quiz %}
+            <h2>Quiz n°{{item.id}} | {{item.result}}/10</h2> 
+            
+        {% endfor %}
             <!-- Nombre de quiz réalisé: -->
 
             <h2>
@@ -21,6 +25,11 @@
                 {% endif %}
             </h2>
         </div>
+    </div>
+    <div class="liste-quiz">
+        {% for quiz in user_data %}
+            
+        {% endfor %}
     </div>
 </div>
 </div>

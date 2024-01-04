@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VertDemain - Quiz{% endblock %}
+
+{% block body %}
+<div class="contact_section layout_padding">
+    <h1 class="contact_taital mb-5">QUIZ</h1>
+    {{ form_start(form) }}
+    <div class="client_section_2 container">
+    {% for element in vingtPremiersElements %}
+        <div class="question">
+            <div class="titleQuestion">
+                <h2>{{element.question}}</h2>
+            </div>
+            <div class="réponse">
+                <form class="d-flex justify-content-center mt-2 gap-5">
+                    <label>
+                        <input type="radio" name="choix" value="oui"> OUI
+                    </label>
+                    <label>
+                        <input type="radio" name="choix" value="non"> NON
+                    </label>
+                </form>
+           </div>
+        </div>
+    {% endfor %}
+        
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+       <button type="submit send_btn" class="btn">Valider mes réponses</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -5,9 +5,19 @@
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
-{{dump(form)}}
-    {# {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Soumettre</button>
-    {{ form_end(form) }} #}
+
+{{ form_start(form) }}
+
+<div class="choices">
+    {% for key, child in form.children %}
+        <div class="choice">
+            {{ form_row(child) }}
+        </div>
+    {% endfor %}
+</div>
+
+{# {{ form_rest(form) }} #}
+<button type="submit">Submit</button>
+
+{{ form_end(form) }}
 {% endblock %}
