@@ -10,8 +10,11 @@
         <div class="titleQuestion">
 
         {% for item in app.user.quiz %}
-            <h2>Quiz n°{{item.id}} | {{item.result}}/10</h2> 
-            
+            {% if item.result >= 5  %}
+                <h2 style="color:#79C524;">Quiz n°{{loop.index}} | {{item.result}}/10</h2> 
+            {% else %}
+                <h2>Quiz n°{{loop.index}} | {{item.result}}/10</h2> 
+            {% endif %}
         {% endfor %}
             <!-- Nombre de quiz réalisé: -->
 
@@ -20,8 +23,7 @@
                     Vous ne possédez pas de certificat pour le moment... mais vous pouvez toujours en obtenir un en passant notre <a href="{{ path('app_quiz') }}">quiz</a> !
 
                 {% elseif user_data.certificat == true %}
-                    Vous possédez un certificat. Félicitation !
-
+                    Vous possédez un <a href="{{ path('app_certificat') }}" style="color:#79C524;">certificat</a>. Félicitation !
                 {% endif %}
             </h2>
         </div>
